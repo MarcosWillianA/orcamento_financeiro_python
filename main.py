@@ -59,7 +59,7 @@ while rodando:
         while True:
             entrada_usuario = input('Que tipo de valor quer registrar? ').strip()
             entrada_formatada = entrada_usuario.replace(',','.')
-            if entrada_formatada.replace('.', '', 1).isdigit():
+            if entrada_formatada.replace('.', '', 2).isdigit():
                 valor_movimentacao = round(float(entrada_formatada), 2)
                 if valor_movimentacao > 0:
                     break
@@ -73,7 +73,7 @@ while rodando:
         
     elif opcao_usuario == '2':
         tipo_movimentacao = 'Saída'
-        
+        saldo_atual = calcular_saldo(lista_movimentacoes)
         while True:
             saida_movimentacao = input('Que tipo de saída quer registrar? ').strip()
             descricao_movimentacao = saida_movimentacao.capitalize()
@@ -86,12 +86,14 @@ while rodando:
             saida_formatada = saida_usuario.replace(',','.')
             if saida_formatada.replace('.', '', 1).isdigit():
                 valor_movimentacao = round(float(saida_formatada), 2)
-                if valor_movimentacao > 0:
+                if valor_movimentacao > 0 and valor_movimentacao < saldo_atual:
                     break
                 else:
-                    print('Erro: o valor de saída deve ser maior que zero')
+                    print('Erro: não é possível fazer essa transação')
+                    
             else:
                 print('Erro: digite um valor válido (Ex.: 165,00 ou 165.00 ou 165).')
+                
         
         registrar_movimentacoes(tipo_movimentacao, descricao_movimentacao, valor_movimentacao)
         print(f'Saída de {descricao_movimentacao} de R${valor_movimentacao:.2f} registrada com sucesso \n')
