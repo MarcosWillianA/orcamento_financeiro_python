@@ -26,12 +26,30 @@ while rodando:
     opcao_usuario = input('Qual opção do menu vai escolher? ')
     
     if opcao_usuario == '1':
-        tipo_movimentacao = 'entrada'
-        descricao_movimentacao = input('Que tipo de entrada quer registrar? ')
-        valor_movimentacao = float(input('Qual o valor que vai registrar? '))
-        registrar_movimentacoes(tipo_movimentacao, descricao_movimentacao, valor_movimentacao)
+        tipo_movimentacao = 'Entrada'
+        
+        while True:
+            descricao_movimentacao = input('Que tipo de entrada quer registrar? ').strip()
+            if descricao_movimentacao != '':
+                break
+            else:
+                print('A descrição não pode ficar em branco, por favor, digite uma descrição adequada ')
+        while True:
+            entrada_usuario = input('Que tipo de valor quer registrar? ').strip()
+            entrada_formatada = entrada_usuario.replace(',','.')
+            if entrada_formatada.replace(',', '.', 1).isdigit():
+                valor_movimentacao = round(float(entrada_formatada), 2)
+                if valor_movimentacao > 0:
+                    break
+                else:
+                    print('Erro: o valor de entrada deve ser maior que zero')
+            else:
+                print('Erro: digite um valor válido (Ex.: 1650,00 ou 1650.00 ou 1650).')
     
-    if opcao_usuario == '5':
+        registrar_movimentacoes(tipo_movimentacao, descricao_movimentacao, valor_movimentacao)
+        print(f'Entrada de {descricao_movimentacao} de R${valor_movimentacao:.2f} registrada com sucesso \n')
+            
+    elif opcao_usuario == '5':
         print('Volte sempre!')
         rodando = False
     
