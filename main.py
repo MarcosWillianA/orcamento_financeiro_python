@@ -8,7 +8,7 @@ Escolha uma das opções do menu:
 1 - Registrar entrada;
 2 - Registrar saída;
 3 - Exibir extrato;
-4 - Calcular saldo;
+4 - Exibir saldo;
 5 - Sair
 
 '''
@@ -17,8 +17,29 @@ def exibir_menu():
     print(mensagem)
 
 def registrar_movimentacoes(tipo, descricao, valor):
-    movimentacao = f'{tipo} | {descricao} | {valor} '
+    movimentacao = [tipo, descricao, valor]
     lista_movimentacoes.append(movimentacao)
+
+def calcular_saldo(lista):
+    receita = 0
+    despesa = 0
+    for item in lista:
+        if item[0] == 'Entrada':
+            receita += item[2]
+        else:
+            despesa += item[2]
+    saldo = receita - despesa
+    return saldo
+    
+def exibir_extrato(lista):
+    if len(lista) < 1:
+        print('Não há registro de movimentações no momento.')
+    else:
+        for item in lista:
+            print(f'{item[0]} -- {item[1]}: R${item[2]}')
+    
+    print(f'Saldo: R${calcular_saldo(lista_movimentacoes)}')
+
 
 while rodando:
     exibir_menu()
@@ -74,6 +95,13 @@ while rodando:
         
         registrar_movimentacoes(tipo_movimentacao, descricao_movimentacao, valor_movimentacao)
         print(f'Saída de {descricao_movimentacao} de R${valor_movimentacao:.2f} registrada com sucesso \n')
+        
+    elif opcao_usuario == '3':
+        exibir_extrato(lista_movimentacoes)
+        
+    elif opcao_usuario == '4':
+        saldo_atual = calcular_saldo(lista_movimentacoes)
+        print(f'O saldo atual é de R${saldo_atual}')
             
     elif opcao_usuario == '5':
         print('Volte sempre!')
