@@ -73,7 +73,7 @@ while rodando:
         
     elif opcao_usuario == '2':
         tipo_movimentacao = 'Saída'
-        saldo_atual = calcular_saldo(lista_movimentacoes)
+        
         while True:
             saida_movimentacao = input('Que tipo de saída quer registrar? ').strip()
             descricao_movimentacao = saida_movimentacao.capitalize()
@@ -86,7 +86,7 @@ while rodando:
             saida_formatada = saida_usuario.replace(',','.')
             if saida_formatada.replace('.', '', 1).isdigit():
                 valor_movimentacao = round(float(saida_formatada), 2)
-                if valor_movimentacao > 0 and valor_movimentacao < saldo_atual:
+                if valor_movimentacao > 0:
                     break
                 else:
                     print('Erro: não é possível fazer essa transação')
