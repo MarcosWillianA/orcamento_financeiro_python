@@ -49,14 +49,14 @@ while rodando:
     
     if opcao_usuario == '1':
         tipo_movimentacao = 'Entrada'
-        cancelou = False # Variável para controlar se o usuário desistiu no meio do caminho
+        cancelou = False 
         
         while True:
             entrada_movimentacao = input('Que tipo de entrada quer registrar? (ou digite 0 para voltar): ').strip()
             
             if entrada_movimentacao == '0':
                 cancelou = True
-                break # Sai da validação da descrição
+                break 
                 
             descricao_movimentacao = entrada_movimentacao.capitalize()
             if descricao_movimentacao != '':
@@ -64,7 +64,6 @@ while rodando:
             else:
                 print('A descrição não pode ficar em branco, por favor, digite uma descrição adequada ')
         
-        # Se ele cancelou na descrição, o 'continue' faz o código ignorar o resto e voltar pro menu principal
         if cancelou:
             print("Operação cancelada. Voltando ao menu...\n")
             continue 
@@ -74,10 +73,11 @@ while rodando:
             
             if entrada_usuario == '0':
                 cancelou = True
-                break # Sai da validação do valor
+                break 
                 
-            entrada_formatada = entrada_usuario.replace(',','.')
-            if entrada_formatada.replace('.', '', 1).isdigit():
+            entrada_formatada = entrada_usuario.replace(',', '.')
+                
+            if entrada_formatada.count('.') <= 1 and entrada_formatada.replace('.', '', 1).isdigit():
                 valor_movimentacao = round(float(entrada_formatada), 2)
                 if valor_movimentacao > 0:
                     break
@@ -90,7 +90,6 @@ while rodando:
             print("Operação cancelada. Voltando ao menu...\n")
             continue
             
-        # Só executa o registro se o usuário não tiver cancelado nada
         registrar_movimentacoes(tipo_movimentacao, descricao_movimentacao, valor_movimentacao)
         print(f'Entrada de {descricao_movimentacao} de R${valor_movimentacao:.2f} registrada com sucesso \n')
         
@@ -121,9 +120,9 @@ while rodando:
             if saida_usuario == '0':
                 cancelou = True
                 break
+            saida_formatada = saida_usuario.replace(',', '.')
                 
-            saida_formatada = saida_usuario.replace(',','.')
-            if saida_formatada.replace('.', '', 1).isdigit():
+            if saida_formatada.count('.') <= 1 and saida_formatada.replace('.', '', 1).isdigit():
                 valor_movimentacao = round(float(saida_formatada), 2)
                 if valor_movimentacao > 0:
                     break
