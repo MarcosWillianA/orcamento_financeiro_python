@@ -36,7 +36,7 @@ def exibir_extrato(lista):
         print('Não há registro de movimentações no momento.')
     else:
         for item in lista:
-            print(f'{item[0]} -- {item[1]}: R${item[2]}')
+            print(f'{item[0]} -- {item[1]}: R${item[2]:.2f}')
     
     print(f'Saldo: R${calcular_saldo(lista_movimentacoes)}')
 
@@ -59,7 +59,7 @@ while rodando:
         while True:
             entrada_usuario = input('Que tipo de valor quer registrar? ').strip()
             entrada_formatada = entrada_usuario.replace(',','.')
-            if entrada_formatada.replace('.', '', 2).isdigit():
+            if entrada_formatada.replace('.', '', 1).isdigit():
                 valor_movimentacao = round(float(entrada_formatada), 2)
                 if valor_movimentacao > 0:
                     break
@@ -103,7 +103,7 @@ while rodando:
         
     elif opcao_usuario == '4':
         saldo_atual = calcular_saldo(lista_movimentacoes)
-        print(f'O saldo atual é de R${saldo_atual}')
+        print(f'O saldo atual é de R${saldo_atual:.2f}')
             
     elif opcao_usuario == '5':
         print('Volte sempre!')
