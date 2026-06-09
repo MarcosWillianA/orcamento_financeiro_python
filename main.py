@@ -37,7 +37,7 @@ while rodando:
         while True:
             entrada_usuario = input('Que tipo de valor quer registrar? ').strip()
             entrada_formatada = entrada_usuario.replace(',','.')
-            if entrada_formatada.replace(',', '.', 1).isdigit():
+            if entrada_formatada.replace('.', '', 1).isdigit():
                 valor_movimentacao = round(float(entrada_formatada), 2)
                 if valor_movimentacao > 0:
                     break
