@@ -1,3 +1,6 @@
+# Trabalho em Grupo – LÓGICA DE PROGRAMAÇÃO I Professor: Lukas Rocha Rodrigues
+# Alunos: Marcos Willian e Mateus Souza
+
 lista_movimentacoes = []
 rodando = True
 mensagem = ''' 
